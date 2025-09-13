@@ -1,0 +1,25 @@
+.game-board-container {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 40px auto;
+}
+
+.game-board {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .game-board-container {
+    width: 90vw;
+    height: 90vw;
+    max-width: 500px;
+    max-height: 500px;
+  }
+
+  .game-board {
+    width: 100%;
+    height: 100%;
+  }
+}
