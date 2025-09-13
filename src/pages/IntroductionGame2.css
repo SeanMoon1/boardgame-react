@@ -19,11 +19,9 @@
 }
 
 .game-header h1 {
-  color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 3rem;
+  color: #333;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .reset-btn {
@@ -71,20 +69,17 @@
 }
 
 .ment-result {
-  font-size: 1.8rem;
-  color: white;
+  font-size: 2.5rem;
+  color: #333;
   font-weight: bold;
-  margin-bottom: 40px;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
   line-height: 1.6;
-  white-space: pre-line;
-  max-width: 600px;
   word-break: keep-all;
+  max-width: 800px;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .show-dice-btn {
