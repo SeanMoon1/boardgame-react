@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { GameConfig } from "../types/game";
+import { GameConfig, GameType } from "../types/game";
 import "./HomePage.css";
 
 const HomePage: React.FC = () => {
@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
       title: "소개하기 게임 2",
       description: "더 구체적이고 상세한 질문으로 친구들과 대화해보세요.",
       path: "/introduction2",
-      type: "introduction2" as any,
+      type: GameType.INTRODUCTION2,
     },
     {
       title: "단답형 게임",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Dice3D from "../components/Dice3D";
-import { useDiceGame } from "../hooks\useDiceGame";
+import { useDiceGame } from "../hooks/useDiceGame";
 import "./IntroductionGame2.css";
 
 const IntroductionGame2: React.FC = () => {

@@ -45,6 +45,7 @@ export interface TwoDiceGameState {
 export enum GameType {
   TRAVEL = "travel",
   INTRODUCTION = "introduction",
+  INTRODUCTION2 = "introduction2",
   SHORT_ANSWER = "short-answer",
   SENTENCE = "sentence",
   DICE_ONLY = "dice-only",
