@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import Dice3D from "../components/Dice3D";
-import { useDiceGame } from "../hooks/useDiceGame";
 import "./DiceOnlyGame.css";
 
 const DiceOnlyGame: React.FC = () => {
-  const { resetGame } = useDiceGame();
   const [lastResult, setLastResult] = useState<number | null>(null);
 
   const handleDiceRoll = (result: number) => {
@@ -12,7 +10,6 @@ const DiceOnlyGame: React.FC = () => {
   };
 
   const handleReset = () => {
-    resetGame();
     setLastResult(null);
   };
 

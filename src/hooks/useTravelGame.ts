@@ -33,50 +33,32 @@ export const useTravelGame = () => {
     totalSpots: initialBoardSpots.length,
   });
 
-  const [diceState, setDiceState] = useState({
-    shuffledNumbers: [] as number[],
-    currentIndex: 0,
-  });
-
   const [showSpotInfo, setShowSpotInfo] = useState(false);
   const [currentSpot, setCurrentSpot] = useState<BoardSpot | null>(null);
 
-  const shuffleNumbers = useCallback(() => {
-    const shuffled = [1, 2, 3, 4, 5, 6].sort(() => Math.random() - 0.5);
-    setDiceState({
-      shuffledNumbers: shuffled,
-      currentIndex: 0,
-    });
+  const startGame = useCallback((player1Name: string, player2Name: string) => {
+    setGameState((prev) => ({
+      ...prev,
+      players: [
+        {
+          name: player1Name || "놀이 참여자1",
+          pos: 0,
+          color: "red",
+          lap: 0,
+          skip: false,
+        },
+        {
+          name: player2Name || "놀이 참여자2",
+          pos: 0,
+          color: "blue",
+          lap: 0,
+          skip: false,
+        },
+      ],
+      currentPlayer: 0,
+      gameActive: true,
+    }));
   }, []);
-
-  const startGame = useCallback(
-    (player1Name: string, player2Name: string) => {
-      setGameState((prev) => ({
-        ...prev,
-        players: [
-          {
-            name: player1Name || "놀이 참여자1",
-            pos: 0,
-            color: "red",
-            lap: 0,
-            skip: false,
-          },
-          {
-            name: player2Name || "놀이 참여자2",
-            pos: 0,
-            color: "blue",
-            lap: 0,
-            skip: false,
-          },
-        ],
-        currentPlayer: 0,
-        gameActive: true,
-      }));
-      // 게임 시작 시 주사위 섞기
-      shuffleNumbers();
-    },
-    [shuffleNumbers]
-  );
 
   const movePlayer = useCallback((steps: number) => {
     setGameState((prev) => {
@@ -96,33 +78,6 @@ export const useTravelGame = () => {
       };
     });
   }, []);
-
-  const rollDice = useCallback((): number => {
-    let roll: number;
-
-    setDiceState((prev) => {
-      let newShuffled = [...prev.shuffledNumbers];
-      let newIndex = prev.currentIndex;
-
-      // 모든 숫자를 사용했으면 다시 섞기
-      if (newIndex >= newShuffled.length) {
-        newShuffled = [1, 2, 3, 4, 5, 6].sort(() => Math.random() - 0.5);
-        newIndex = 0;
-      }
-
-      roll = newShuffled[newIndex];
-      newIndex++;
-
-      return {
-        shuffledNumbers: newShuffled,
-        currentIndex: newIndex,
-      };
-    });
-
-    // movePlayer 호출
-    movePlayer(roll!);
-    return roll!;
-  }, [movePlayer]);
 
   const nextTurn = useCallback(() => {
     setGameState((prev) => ({
@@ -172,10 +127,6 @@ export const useTravelGame = () => {
       gameActive: false,
       totalSpots: initialBoardSpots.length,
     });
-    setDiceState({
-      shuffledNumbers: [],
-      currentIndex: 0,
-    });
     setShowSpotInfo(false);
     setCurrentSpot(null);
   }, []);
@@ -187,7 +138,6 @@ export const useTravelGame = () => {
     showSpotInfo,
     currentSpot,
     startGame,
-    rollDice,
     nextTurn,
     checkGameEnd,
     checkSkipTurn,
@@ -195,6 +145,5 @@ export const useTravelGame = () => {
     showSpot,
     hideSpot,
     resetGame,
-    shuffleNumbers,
   };
 };

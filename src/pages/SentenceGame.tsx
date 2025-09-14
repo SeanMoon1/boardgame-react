@@ -4,8 +4,8 @@ import { useDiceGame } from "../hooks/useDiceGame";
 import "./SentenceGame.css";
 
 const SentenceGame: React.FC = () => {
-  const { resetGame: resetDice1 } = useDiceGame();
-  const { resetGame: resetDice2 } = useDiceGame();
+  const { resetGame: resetDice1, rollDice: rollDice1 } = useDiceGame();
+  const { resetGame: resetDice2, rollDice: rollDice2 } = useDiceGame();
 
   const [word1, setWord1] = useState("");
   const [word2, setWord2] = useState("");
@@ -54,14 +54,14 @@ const SentenceGame: React.FC = () => {
       <div className="game-content">
         <div className="dice-section">
           <div className="dice-result-container">
-            <Dice3D size="medium" onRoll={handleDice1Roll} />
+            <Dice3D size="medium" onRoll={handleDice1Roll} rollDice={rollDice1} />
             <div className="result">{word1}</div>
           </div>
         </div>
 
         <div className="dice-section">
           <div className="dice-result-container">
-            <Dice3D size="medium" onRoll={handleDice2Roll} />
+            <Dice3D size="medium" onRoll={handleDice2Roll} rollDice={rollDice2} />
             <div className="result">{word2}</div>
           </div>
         </div>

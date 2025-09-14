@@ -16,6 +16,7 @@ interface Dice3DProps {
   onRoll?: (result: number) => void;
   disabled?: boolean;
   className?: string;
+  rollDice?: () => number;
 }
 
 const Dice3D: React.FC<Dice3DProps> = ({
@@ -23,6 +24,7 @@ const Dice3D: React.FC<Dice3DProps> = ({
   onRoll,
   disabled = false,
   className = "",
+  rollDice: externalRollDice,
 }) => {
   const diceRef = useRef<HTMLDivElement>(null);
 
@@ -146,8 +148,10 @@ const Dice3D: React.FC<Dice3DProps> = ({
   const rollDice = () => {
     if (disabled || !diceRef.current) return;
 
-    // 1~6 랜덤 숫자
-    const roll = Math.floor(Math.random() * 6) + 1;
+    // 외부에서 제공된 rollDice 함수가 있으면 사용, 없으면 랜덤
+    const roll = externalRollDice
+      ? externalRollDice()
+      : Math.floor(Math.random() * 6) + 1;
 
     // 3D 회전 애니메이션 - 최소 3바퀴 이상 돌도록 일관성 있게 설정
     const extraX = 360 * (3 + Math.floor(Math.random() * 3)); // 3~5바퀴

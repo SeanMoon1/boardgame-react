@@ -4,7 +4,7 @@ import { useDiceGame } from "../hooks/useDiceGame";
 import "./ShortAnswerGame.css";
 
 const ShortAnswerGame: React.FC = () => {
-  const { resetGame } = useDiceGame();
+  const { resetGame, rollDice } = useDiceGame();
   const [currentWord, setCurrentWord] = useState("");
 
   const words = ["모르다", "다르다", "서두르다", "오르다", "빠르다", "부르다"];
@@ -32,7 +32,7 @@ const ShortAnswerGame: React.FC = () => {
 
       <div className="game-content">
         <div className="dice-container">
-          <Dice3D size="large" onRoll={handleDiceRoll} />
+          <Dice3D size="large" onRoll={handleDiceRoll} rollDice={rollDice} />
           <div className="word-result">{currentWord}</div>
         </div>
       </div>

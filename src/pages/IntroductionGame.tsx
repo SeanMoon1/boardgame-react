@@ -4,7 +4,7 @@ import { useDiceGame } from "../hooks/useDiceGame";
 import "./IntroductionGame.css";
 
 const IntroductionGame: React.FC = () => {
-  const { resetGame } = useDiceGame();
+  const { resetGame, rollDice } = useDiceGame();
   const [showDice, setShowDice] = useState(true);
   const [currentMent, setCurrentMent] = useState("");
 
@@ -48,7 +48,7 @@ const IntroductionGame: React.FC = () => {
       <div className="game-content">
         {showDice ? (
           <div className="dice-container">
-            <Dice3D size="large" onRoll={handleDiceRoll} />
+            <Dice3D size="large" onRoll={handleDiceRoll} rollDice={rollDice} />
           </div>
         ) : (
           <div className="result-container">
